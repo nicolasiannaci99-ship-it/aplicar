@@ -3,9 +3,17 @@
   var C = window.MC_CONFIG || {};
   var base = document.documentElement.getAttribute('data-base') || '';
 
+  /* ---------- Datos de Calendly: se leen y se borran de la URL ----------
+     Calendly manda email, nombre y respuestas en la URL. Los guardamos y limpiamos
+     la dirección ANTES de cargar el Pixel, para no mandarle datos personales a Meta. */
+  window.MC_QS = location.search;
+  if (/invitee_|answer_|email/i.test(location.search)) {
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+  }
+
   /* ---------- UTMs: se guardan para toda la sesión ---------- */
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-  var q = new URLSearchParams(location.search);
+  var q = new URLSearchParams(window.MC_QS);
   var utm = {};
   UTM_KEYS.forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
   try {

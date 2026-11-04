@@ -150,7 +150,7 @@
 
 <script>
 (function () {
-  var C = window.MC_CONFIG, q = new URLSearchParams(location.search);
+  var C = window.MC_CONFIG, q = new URLSearchParams(window.MC_QS || location.search);
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var placeholder = function (txt, chico) { return '<div class="placeholder">' + txt + '</div><div class="play' + (chico ? ' chico' : '') + '"></div>'; };

@@ -80,7 +80,7 @@
   // Cuando agenda: si Calendly no tiene configurada la redirección, lo mandamos igual a /gracias
   window.addEventListener('message', function (e) {
     if (e.origin !== 'https://calendly.com' || !e.data || e.data.event !== 'calendly.event_scheduled') return;
-    setTimeout(function () { location.href = 'gracias/' + location.search; }, 3000);
+    setTimeout(function () { location.href = 'gracias/' + location.search; }, 8000); // respaldo: Calendly ya redirige solo
   });
 </script>
 </body>
