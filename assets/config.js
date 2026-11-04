@@ -10,6 +10,9 @@ window.MC_CONFIG = {
   // Número de WhatsApp con código de país, sin + ni espacios. Ej Argentina: '5491155554444'
   whatsapp: '19205234269',
 
+  // Email de contacto que aparece en Privacidad y Términos. Vacío = solo WhatsApp.
+  contactoEmail: '',
+
   // Link de tu evento de Calendly (el de la llamada estratégica)
   calendlyUrl: 'https://calendly.com/nicolasiannaci/llamada-estrategica',
 

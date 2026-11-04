@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>if (!/\/$|\.html$/.test(location.pathname)) location.replace(location.pathname + '/' + location.search + location.hash);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Términos y condiciones · MyConsulting.io</title>
+<meta name="description" content="Términos y condiciones de uso del sitio de MyConsulting.io.">
+<link rel="icon" href="../assets/logo.png">
+<link rel="stylesheet" href="../assets/estilos.css">
+<script src="../assets/config.js"></script>
+</head>
+<body>
+<div class="pagina">
+
+<header class="header"><div class="in">
+  <a href="../" class="marca"><span class="logo"><img src="../assets/logo.png" alt="MyConsulting"></span>MyConsulting.io</a>
+</div></header>
+
+<main class="legal">
+  <a href="../" class="volver">← Volver</a>
+  <h1>Términos y condiciones</h1>
+  <p class="fecha-act">Última actualización: 4 de noviembre de 2026</p>
+
+  <p>Estos términos regulan el uso de este sitio web, operado por <strong>MyConsulting.io</strong> ("MyConsulting", "nosotros"). Al navegar el sitio o agendar una llamada, aceptás estos términos. Si no estás de acuerdo, por favor no uses el sitio.</p>
+
+  <h2>1. Qué ofrecemos</h2>
+  <p>MyConsulting es una consultora que ayuda a infoproductores y dueños de negocios a usar YouTube como canal de adquisición de clientes. A través de este sitio podés ver información sobre nuestros servicios y solicitar una llamada estratégica sin costo.</p>
+
+  <h2>2. La llamada estratégica</h2>
+  <ul>
+    <li>La llamada es gratuita y no implica ningún compromiso de contratación.</li>
+    <li>Agendar una llamada no garantiza que podamos trabajar juntos: evaluamos cada caso para ver si nuestros servicios se ajustan a tu negocio.</li>
+    <li>Si no podés asistir, te pedimos que nos avises o reprogrames con anticipación.</li>
+    <li>Nos reservamos el derecho de cancelar o reprogramar llamadas cuando sea necesario.</li>
+  </ul>
+
+  <h2>3. Resultados</h2>
+  <p>Los resultados, cifras y casos mostrados en este sitio (incluyendo capturas de analíticas y testimonios) corresponden a clientes reales y se muestran con fines ilustrativos. <strong>No son una promesa ni una garantía de resultados.</strong> Los resultados de cada negocio dependen de muchos factores, como el nicho, la oferta, la constancia, la ejecución y las condiciones del mercado.</p>
+
+  <h2>4. Contratación de servicios</h2>
+  <p>Si decidís contratar alguno de nuestros servicios, las condiciones específicas (alcance, precio, plazos y forma de pago) se acordarán por separado y por escrito. Estos términos no constituyen una oferta de servicios.</p>
+
+  <h2>5. Propiedad intelectual</h2>
+  <p>Los textos, videos, imágenes, logotipos, diseño y demás contenidos de este sitio pertenecen a MyConsulting o se usan con autorización. No podés copiarlos, reproducirlos ni distribuirlos sin nuestro permiso por escrito.</p>
+
+  <h2>6. Uso adecuado del sitio</h2>
+  <p>Te comprometés a usar el sitio de forma lícita, a brindar información verdadera al agendar una llamada y a no intentar dañar, interferir ni acceder sin autorización a sus sistemas.</p>
+
+  <h2>7. Servicios de terceros</h2>
+  <p>El sitio integra herramientas de terceros, como Calendly, Loom, WhatsApp y Meta. El uso de esas herramientas también está sujeto a sus propios términos y políticas. No somos responsables por el funcionamiento ni por los contenidos de sitios o servicios de terceros.</p>
+
+  <h2>8. Limitación de responsabilidad</h2>
+  <p>El sitio y su contenido se ofrecen "tal como están", con fines informativos. En la medida permitida por la ley, MyConsulting no será responsable por daños derivados del uso del sitio o de decisiones tomadas en base a su contenido.</p>
+
+  <h2>9. Privacidad</h2>
+  <p>El tratamiento de tus datos personales se rige por nuestra <a href="../privacidad/">Política de privacidad</a>.</p>
+
+  <h2>10. Cambios</h2>
+  <p>Podemos modificar estos términos en cualquier momento. La versión vigente estará siempre publicada en esta página con su fecha de actualización.</p>
+
+  <h2>11. Contacto</h2>
+  <p>Si tenés preguntas sobre estos términos, escribinos por <a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp</a><span id="contacto-email"></span>.</p>
+</main>
+
+<footer class="footer"><div class="in">
+  <span>© 2026 MyConsulting · Consultora de YouTube</span>
+  <nav><a href="../privacidad/">Política de privacidad</a><a href="./">Términos</a></nav>
+</div></footer>
+
+</div>
+<script>
+  (function () {
+    var C = window.MC_CONFIG || {};
+    var wa = 'https://wa.me/' + String(C.whatsapp || '').replace(/\D/g, '');
+    document.querySelectorAll('.wa-link').forEach(function (a) { a.href = wa; });
+    if (C.contactoEmail) document.getElementById('contacto-email').innerHTML = ' o por correo a <a href="mailto:' + C.contactoEmail + '">' + C.contactoEmail + '</a>';
+  })();
+</script>
+</body>
+</html>
