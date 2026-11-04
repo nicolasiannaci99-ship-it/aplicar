@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es" data-base="../">
+<head>
+<meta charset="utf-8">
+<script>/* Si entran a /aplicar sin la barra final, la agregamos (si no, no cargan los estilos) */ if (!/\/$|\.html$/.test(location.pathname)) location.replace(location.pathname + '/' + location.search + location.hash);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llamada confirmada · MyConsulting.io</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo.png">
+<link rel="stylesheet" href="../assets/estilos.css">
+<style>
+  .acciones{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:40px}
+  .fecha{display:flex;align-items:center;justify-content:center;gap:10px 14px;flex-wrap:wrap;margin-top:26px;font-size:17px;color:#9A8D7E}
+  .fecha b{font-weight:400;color:#EDE6DC}.fecha i{font-style:normal;color:#5C5248}
+  .nota{font-size:15px;line-height:1.6;color:#9A8D7E;max-width:52ch;margin:22px auto 0}
+  .nota2{font-size:14px;color:#7D7266;margin-top:10px}
+  .nota2 a{color:#B5A998;border-bottom:1px solid #4A3F35}
+  .grilla2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1060px;margin:56px auto 0}
+  .grilla3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1100px;margin:56px auto 0}
+  .tarjeta{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:16px;padding:12px;border:1px solid #2A211A;border-radius:14px;background:linear-gradient(180deg,#140E0A,#0B0806);transition:border-color .16s,transform .16s}
+  .tarjeta:hover{border-color:#4A3A2C}.tarjeta:active{transform:scale(.99)}
+  .tarjeta:focus-visible{outline:2px solid #C9A46A;outline-offset:3px}
+  .tarjeta .video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+  .tarjeta .video::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,8,6,0) 40%,rgba(11,8,6,.75) 100%)}
+  .tarjeta .play{z-index:2}
+  .dur{position:absolute;z-index:2;right:14px;bottom:16px;padding:5px 10px;border-radius:999px;background:rgba(7,5,4,.75);border:1px solid rgba(237,230,220,.18);font-size:13px;color:#EDE6DC}
+  .tit{display:flex;align-items:baseline;gap:14px;padding:0 6px 8px}
+  .tit span:first-child{font-size:14px;color:#C9A46A;flex-shrink:0}
+  .tit span:last-child{font-size:19px;line-height:1.35;letter-spacing:-.01em;color:#EDE6DC}
+  .tabla{max-width:1100px;margin:56px auto 0}
+  .fila{display:grid;grid-template-columns:1.1fr 1fr 1.4fr 1.5fr 1fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid #1E1712;font-size:16px;color:#9A8D7E}
+  .fila.head{padding:0 0 16px;border-bottom-color:#2A211A;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#7D7266}
+  .fila .c{font-size:19px;color:#EDE6DC}.fila .r{color:#EDE6DC;line-height:1.45}
+  .fila .l{display:flex;gap:16px;justify-content:flex-end;flex-wrap:wrap;font-size:15px}
+  .fila .l a{white-space:nowrap}
+  .lbl{display:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7D7266;margin-bottom:4px}
+  .testi{display:flex;flex-direction:column;gap:16px;padding:12px;border:1px solid #2A211A;border-radius:14px;background:linear-gradient(180deg,#140E0A,#0B0806)}
+  .testi .n{font-size:18px;color:#EDE6DC}.testi .ni{font-size:14px;color:#7D7266;margin-top:4px}
+  .testi .re{font-size:15px;line-height:1.5;color:#9A8D7E;margin-top:12px;padding-top:12px;border-top:1px solid #1E1712}
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(5,4,3,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:16px}
+  .modal.abierto{display:flex}
+  .modal .caja{width:100%;max-width:1060px}
+  .modal .top{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:16px}
+  .modal .top .t{font-size:clamp(17px,2vw,22px);color:#EDE6DC}
+  .modal .top .t span{font-size:14px;color:#C9A46A;margin-right:14px}
+  .cerrar{all:unset;cursor:pointer;flex-shrink:0;width:44px;height:44px;border-radius:50%;border:1px solid rgba(237,230,220,.28);display:flex;align-items:center;justify-content:center;color:#EDE6DC;font-size:20px}
+  .cerrar:hover{border-color:rgba(237,230,220,.6)}
+  .modal .marco{margin:0}
+  @media (max-width:900px){
+    .grilla2,.grilla3{grid-template-columns:1fr;gap:20px}
+    .fila.head{display:none}
+    .fila{grid-template-columns:1fr;gap:10px;padding:22px;border:1px solid #2A211A;border-radius:14px;background:#0E0A08;margin-bottom:12px}
+    .fila .l{justify-content:flex-start}
+    .lbl{display:block}
+  }
+  @media (max-width:560px){
+    .acciones{flex-direction:column;align-items:stretch}
+    .acciones .btn{width:100%}
+  }
+</style>
+<script src="../assets/config.js"></script>
+<script src="../assets/funnel.js"></script>
+<!-- Otros scripts de seguimiento (Google Analytics, Hotjar, etc.) van acá -->
+</head>
+<body>
+<div class="pagina">
+
+<header class="header"><div class="in">
+  <span class="marca"><span class="logo"><img src="../assets/logo.png" alt="MyConsulting"></span>MyConsulting.io</span>
+</div></header>
+
+<section class="hero">
+  <div class="pill"><span style="color:#C9A46A">✓</span> Llamada confirmada</div>
+  <h1><span id="saludo"></span><span id="tu">Tu</span> llamada está agendada.<br><span class="grad-arena">Falta un paso.</span></h1>
+  <div class="bajada">Mira este video de 2 minutos antes de la llamada. Es importante.</div>
+
+  <div class="marco"><div class="video" id="video-confirmacion"><div class="placeholder">Video de confirmación</div><div class="play"></div></div></div>
+
+  <div class="fecha">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A46A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <b id="fecha">Revisá tu mail de confirmación</b><i id="sep">·</i><b id="hora"></b><i>·</i><span>Google Meet</span>
+  </div>
+
+  <div class="acciones">
+    <a id="gcal" href="#" target="_blank" rel="noopener" class="btn btn-plata">Agregar a mi calendario <span>→</span></a>
+    <a href="#" target="_blank" rel="noopener" class="btn btn-borde wa">Guardar nuestro WhatsApp</a>
+  </div>
+  <p class="nota">En las próximas horas te escribe alguien de nuestro equipo por WhatsApp para confirmar y enviarte material para la llamada.</p>
+  <p class="nota2">¿Usás Apple Calendar u Outlook? <a href="#" id="ics">Descargá el archivo .ics</a></p>
+</section>
+
+<section class="seccion">
+  <div class="cabecera">
+    <div class="eyebrow">Antes de la llamada</div>
+    <h2 class="h2">Las preguntas que todos nos hacen <span class="grad-arena">antes de arrancar.</span></h2>
+    <p class="sub">Mira las que te interesen. Son videos cortos.</p>
+  </div>
+  <div class="grilla2" id="breakouts"></div>
+</section>
+
+<section class="seccion">
+  <div class="cabecera">
+    <div class="eyebrow">Casos verificables</div>
+    <h2 class="h2">No nos creas a nosotros. <span class="grad-arena">Entra y miralo vos.</span></h2>
+    <p class="sub">Canales reales de clientes. Cada link lleva al canal y al video.</p>
+  </div>
+  <div class="tabla" id="casos">
+    <div class="fila head"><span>Cliente</span><span>Nicho</span><span>Resultado</span><span>Antes → Después</span><span style="text-align:right">Links</span></div>
+  </div>
+</section>
+
+<section class="muro-sec">
+  <div class="glow"></div>
+  <div class="muro-top">
+    <div class="eyebrow">Muro de resultados</div>
+    <div class="cifra">+$39M <span>USD</span></div>
+    <h2>generados por clientes con YouTube.</h2>
+    <div class="datos"><span><b>7 años</b> escalando infoproductos</span><i></i><span>Capturas reales de canales que manejamos</span></div>
+  </div>
+  <div class="muro-vent"><div class="muro" id="muro"></div></div>
+</section>
+
+<section class="seccion" style="padding-top:80px">
+  <div class="cabecera">
+    <div class="eyebrow">Testimonios</div>
+    <h2 class="h2">En sus propias <span class="grad-arena">palabras.</span></h2>
+  </div>
+  <div class="grilla3" id="testimonios"></div>
+</section>
+
+<section class="cta-final" style="margin-top:150px"><div class="in">
+  <h2>Nos vemos en <span class="grad-arena">la llamada.</span></h2>
+  <p>Si alguien más participa en la decisión (socio, pareja), invitalo a la llamada. Si te surge algo, avisanos por WhatsApp y la reprogramamos.</p>
+  <a href="#" target="_blank" rel="noopener" class="btn btn-borde wa">Escribinos por WhatsApp <span>→</span></a>
+</div></section>
+
+<footer class="footer"><div class="in">
+  <span>© 2026 MyConsulting · Consultora de YouTube</span>
+  <nav><a href="#">Política de privacidad</a><a href="#">Términos</a></nav>
+</div></footer>
+
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="caja">
+    <div class="top"><div class="t"><span id="m-n"></span><span id="m-t" style="color:inherit;font-size:inherit;margin:0"></span></div><button type="button" class="cerrar" aria-label="Cerrar">×</button></div>
+    <div class="marco"><div class="video" id="m-video"></div></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var C = window.MC_CONFIG, q = new URLSearchParams(location.search);
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var placeholder = function (txt, chico) { return '<div class="placeholder">' + txt + '</div><div class="play' + (chico ? ' chico' : '') + '"></div>'; };
+
+  /* Evento de Meta: Schedule */
+  if (!C.scheduleSoloCalificados || q.get('calificado') === '1') mcTrack('Schedule');
+
+  /* Datos que manda Calendly en la redirección */
+  var nombre = (q.get('invitee_full_name') || q.get('invitee_first_name') || '').trim();
+  var ini = q.get('event_start_time') ? new Date(q.get('event_start_time')) : null;
+  if (ini && isNaN(ini)) ini = null;
+  var fin = ini ? (q.get('event_end_time') ? new Date(q.get('event_end_time')) : new Date(ini.getTime() + 45 * 60000)) : null;
+  var fmt = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+  var titulo = 'Llamada estratégica · MyConsulting.io';
+  var detalle = 'Llamada estratégica con el equipo de MyConsulting.io por Google Meet. El enlace está en el mail de confirmación de Calendly.';
+  var fechaTexto = '', horaTexto = '';
+
+  if (nombre) { $('saludo').textContent = nombre.split(' ')[0] + ', '; $('tu').textContent = 'tu'; }
+  if (ini) {
+    var f = new Intl.DateTimeFormat('es-AR', { weekday: 'long', day: 'numeric', month: 'long' }).format(ini);
+    fechaTexto = f.charAt(0).toUpperCase() + f.slice(1);
+    horaTexto = new Intl.DateTimeFormat('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false }).format(ini) + ' hs';
+    $('fecha').textContent = fechaTexto; $('hora').textContent = horaTexto;
+  } else { $('sep').remove(); $('hora').remove(); }
+
+  var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(titulo) + '&details=' + encodeURIComponent(detalle);
+  if (ini) gcal += '&dates=' + fmt(ini) + '/' + fmt(fin);
+  $('gcal').href = gcal;
+
+  /* WhatsApp con nombre, fecha y UTMs */
+  var u = window.MC_UTM || {};
+  var utmTxt = Object.keys(u).length ? ' [' + Object.keys(u).map(function (k) { return k + '=' + u[k]; }).join(' ') + ']' : '';
+  var msg = 'Hola, soy ' + (nombre || '(tu nombre)') + '. Acabo de agendar mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase() + ' a las ' + horaTexto : '') + '.' + utmTxt;
+  var wa = 'https://wa.me/' + String(C.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
+  document.querySelectorAll('.wa').forEach(function (a) { a.href = wa; a.addEventListener('click', function () { mcTrack('Contact'); }); });
+
+  /* Archivo .ics */
+  $('ics').addEventListener('click', function (e) {
+    e.preventDefault();
+    var ahora = fmt(new Date());
+    var l = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MyConsulting.io//ES', 'BEGIN:VEVENT', 'UID:' + ahora + '@myconsulting.io', 'DTSTAMP:' + ahora];
+    if (ini) l.push('DTSTART:' + fmt(ini), 'DTEND:' + fmt(fin));
+    l.push('SUMMARY:' + titulo, 'DESCRIPTION:' + detalle, 'LOCATION:Google Meet', 'END:VEVENT', 'END:VCALENDAR');
+    var url = URL.createObjectURL(new Blob([l.join('\r\n')], { type: 'text/calendar' }));
+    var a = document.createElement('a'); a.href = url; a.download = 'llamada-myconsulting.ics'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+
+  /* Video de confirmación */
+  mcVideo($('video-confirmacion'), C.videoConfirmacionUrl, 'Video de confirmación');
+
+  /* Breakouts + modal */
+  var modal = $('modal');
+  function abrir(i) {
+    var b = C.breakouts[i];
+    $('m-n').textContent = String(i + 1).padStart(2, '0'); $('m-t').textContent = b.titulo;
+    var v = $('m-video'); v.innerHTML = placeholder('Video del breakout');
+    mcVideo(v, b.url, b.titulo);
+    modal.classList.add('abierto'); document.body.style.overflow = 'hidden';
+  }
+  function cerrar() { modal.classList.remove('abierto'); $('m-video').innerHTML = ''; document.body.style.overflow = ''; }
+  modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('.cerrar')) cerrar(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
+  C.breakouts.forEach(function (b, i) {
+    var n = String(i + 1).padStart(2, '0');
+    var thumb = '../assets/resultados/yt-' + String(((i * 3) % 26) + 1).padStart(2, '0') + '.jpg';
+    var el = document.createElement('button'); el.type = 'button'; el.className = 'tarjeta';
+    el.innerHTML = '<div class="video"><img src="' + thumb + '" alt=""><div class="play chico"></div><div class="dur">' + esc(b.duracion) + '</div></div>' +
+      '<div class="tit"><span>' + n + '</span><span>' + esc(b.titulo) + '</span></div>';
+    el.addEventListener('click', function () { abrir(i); });
+    $('breakouts').appendChild(el);
+  });
+
+  /* Casos */
+  C.casos.forEach(function (c) {
+    var el = document.createElement('div'); el.className = 'fila';
+    el.innerHTML =
+      '<div><span class="lbl">Cliente</span><span class="c">' + esc(c.cliente) + '</span></div>' +
+      '<div><span class="lbl">Nicho</span>' + esc(c.nicho) + '</div>' +
+      '<div><span class="lbl">Resultado</span><span class="r">' + esc(c.resultado) + '</span></div>' +
+      '<div><span class="lbl">Antes → Después</span>' + esc(c.antes) + '</div>' +
+      '<div class="l"><a href="' + esc(c.canal) + '" target="_blank" rel="noopener">Ver canal ↗</a><a href="' + esc(c.video) + '" target="_blank" rel="noopener">Ver video ↗</a></div>';
+    $('casos').appendChild(el);
+  });
+
+  /* Testimonios */
+  C.testimonios.forEach(function (t) {
+    var el = document.createElement('div'); el.className = 'testi';
+    el.innerHTML = '<div class="video vertical">' + placeholder('Video testimonio', true) + '</div>' +
+      '<div style="padding:0 6px 8px"><div class="n">' + esc(t.nombre) + '</div><div class="ni">' + esc(t.nicho) + '</div><div class="re">' + esc(t.resultado) + '</div></div>';
+    mcVideo(el.querySelector('.video'), t.url, t.nombre);
+    $('testimonios').appendChild(el);
+  });
+
+  mcMuro($('muro'));
+})();
+</script>
+</body>
+</html>

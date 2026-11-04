@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" data-base="">
+<head>
+<meta charset="utf-8">
+<script>/* Si entran a /aplicar sin la barra final, la agregamos (si no, no cargan los estilos) */ if (!/\/$|\.html$/.test(location.pathname)) location.replace(location.pathname + '/' + location.search + location.hash);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyConsulting.io · YouTube como fuente de clientes</title>
+<meta name="description" content="Cómo convertir tu canal de YouTube en tu principal fuente de adquisición de clientes. Con 2 videos por semana y sin depender de anuncios.">
+<meta property="og:title" content="Cómo convertir tu canal de YouTube en tu principal fuente de adquisición de clientes">
+<meta property="og:description" content="Con 2 videos por semana y sin depender de anuncios.">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="assets/estilos.css">
+<script src="assets/config.js"></script>
+<script src="assets/funnel.js"></script>
+<!-- Otros scripts de seguimiento (Google Analytics, Hotjar, etc.) van acá -->
+</head>
+<body>
+<div class="pagina">
+
+<header class="header"><div class="in">
+  <span class="marca"><span class="logo"><img src="assets/logo.png" alt="MyConsulting"></span>MyConsulting.io</span>
+</div></header>
+
+<section class="hero">
+  <div class="pill">Para infoproductores facturando +30K/mes en adelante</div>
+  <h1>Cómo convertir tu canal de YouTube en tu <span class="grad-plata">principal fuente de adquisición de clientes</span></h1>
+  <div class="bajada">Con 2 videos por semana y sin depender de anuncios.</div>
+
+  <div class="marco"><div class="video" id="vsl"></div></div>
+
+  <div id="agenda">
+    <div class="eyebrow">Aplicación</div>
+    <h2>Agenda tu llamada estratégica</h2>
+    <div class="cal-caja"><div class="cal-widget" id="calendly"></div></div>
+  </div>
+</section>
+
+<section class="muro-sec">
+  <div class="glow"></div>
+  <div class="muro-top">
+    <div class="eyebrow">Muro de resultados</div>
+    <div class="cifra">+$39M <span>USD</span></div>
+    <h2>generados por clientes con YouTube.</h2>
+    <div class="datos"><span><b>7 años</b> escalando infoproductos</span><i></i><span>Capturas reales de canales que manejamos</span></div>
+  </div>
+  <div class="muro-vent"><div class="muro" id="muro"></div></div>
+</section>
+
+<section class="cta-final"><div class="in">
+  <h2>¿Listo para ser el #1<br>de tu nicho con YouTube?</h2>
+  <p>Tomamos un número limitado de clientes por mes.<br>Aplica para ver si calificas para una llamada estratégica.</p>
+  <a href="#agenda" class="btn btn-plata btn-grande">Agendá una llamada <span>→</span></a>
+</div></section>
+
+<footer class="footer"><div class="in">
+  <span>© 2026 MyConsulting · Consultora de YouTube</span>
+  <nav><a href="#">Política de privacidad</a><a href="#">Términos</a></nav>
+</div></footer>
+
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async onload="mcCalendly()"></script>
+<script>
+  var C = window.MC_CONFIG;
+  mcVideo(document.getElementById('vsl'), C.vslEmbedUrl, 'Video');
+  mcMuro(document.getElementById('muro'));
+
+  // Calendly embebido, con los UTMs del anuncio
+  function mcCalendly() {
+    var u = window.MC_UTM || {}, utm = {};
+    Object.keys(u).forEach(function (k) { utm[k.replace(/_(\w)/, function (_, c) { return c.toUpperCase(); })] = u[k]; });
+    Calendly.initInlineWidget({
+      url: C.calendlyUrl + '?hide_gdpr_banner=1&background_color=0e0a08&text_color=ede6dc&primary_color=c9a46a',
+      parentElement: document.getElementById('calendly'),
+      utm: utm
+    });
+  }
+
+  // Cuando agenda: si Calendly no tiene configurada la redirección, lo mandamos igual a /gracias
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://calendly.com' || !e.data || e.data.event !== 'calendly.event_scheduled') return;
+    setTimeout(function () { location.href = 'gracias/' + location.search; }, 3000);
+  });
+</script>
+</body>
+</html>
