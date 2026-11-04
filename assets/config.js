@@ -11,7 +11,7 @@ window.MC_CONFIG = {
   whatsapp: '19205234269',
 
   // Email de contacto que aparece en Privacidad y Términos. Vacío = solo WhatsApp.
-  contactoEmail: '',
+  contactoEmail: 'info@myconsulting.io',
 
   // Link de tu evento de Calendly (el de la llamada estratégica)
   calendlyUrl: 'https://calendly.com/nicolasiannaci/llamada-estrategica',
