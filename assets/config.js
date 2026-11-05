@@ -33,8 +33,8 @@ window.MC_CONFIG = {
   // url = embed; vacío = placeholder.
   breakouts: [
     { titulo: 'YouTube es lento: ¿en cuánto tiempo veo resultados?', duracion: '2:14', url: '' },
-    { titulo: '¿Cuánto tiempo me lleva a mí?',                      duracion: '1:32', url: '' },
-    { titulo: '¿Funciona en mi nicho?',                              duracion: '1:56', url: '' },
+    { titulo: '¿Cuánto tiempo me lleva a mí?',                      duracion: '0:45', url: 'https://www.loom.com/embed/b375b94f165942d4b0db5afb711f1665?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true' },
+    { titulo: '¿Funciona en mi nicho?',                              duracion: '1:04', url: 'https://www.loom.com/embed/8c2369c1b447465388890aced09da8b9?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true' },
   ],
 
   // Casos verificables (tabla). canal / video = links reales.
