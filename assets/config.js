@@ -27,12 +27,12 @@ window.MC_CONFIG = {
   // ---------- Página de gracias ----------
 
   // Video de confirmación ("mirá este video de 2 minutos"). URL de embed. Vacío = placeholder.
-  videoConfirmacionUrl: '',
+  videoConfirmacionUrl: 'https://www.loom.com/embed/786113a0496143f49d2b100040580edc?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true',
 
   // Videos cortos de objeciones (breakouts): 3 en fila en compu, uno debajo del otro en celular.
   // url = embed; vacío = placeholder.
   breakouts: [
-    { titulo: 'YouTube es lento: ¿en cuánto tiempo veo resultados?', duracion: '2:14', url: '' },
+    { titulo: 'YouTube es lento: ¿en cuánto tiempo veo resultados?', duracion: '', url: 'https://www.loom.com/embed/7c20995ba3484c82ae4725f95fee71f6?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true' },
     { titulo: '¿Cuánto tiempo me lleva a mí?',                      duracion: '0:45', url: 'https://www.loom.com/embed/b375b94f165942d4b0db5afb711f1665?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true' },
     { titulo: '¿Funciona en mi nicho?',                              duracion: '1:04', url: 'https://www.loom.com/embed/8c2369c1b447465388890aced09da8b9?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true' },
   ],
