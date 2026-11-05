@@ -71,7 +71,7 @@
     var u = window.MC_UTM || {}, utm = {};
     Object.keys(u).forEach(function (k) { utm[k.replace(/_(\w)/, function (_, c) { return c.toUpperCase(); })] = u[k]; });
     Calendly.initInlineWidget({
-      url: C.calendlyUrl + '?hide_gdpr_banner=1&background_color=0e0a08&text_color=ede6dc&primary_color=c9a46a',
+      url: C.calendlyUrl + '?hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=1d1d1f',
       parentElement: document.getElementById('calendly'),
       utm: utm
     });

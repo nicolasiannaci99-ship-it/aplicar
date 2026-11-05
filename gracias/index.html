@@ -10,35 +10,35 @@
 <link rel="stylesheet" href="../assets/estilos.css">
 <style>
   .acciones{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:40px}
-  .fecha{display:flex;align-items:center;justify-content:center;gap:10px 14px;flex-wrap:wrap;margin-top:26px;font-size:17px;color:#9A8D7E}
-  .fecha b{font-weight:400;color:#EDE6DC}.fecha i{font-style:normal;color:#5C5248}
-  .nota{font-size:15px;line-height:1.6;color:#9A8D7E;max-width:52ch;margin:22px auto 0}
-  .nota2{font-size:14px;color:#7D7266;margin-top:10px}
-  .nota2 a{color:#B5A998;border-bottom:1px solid #4A3F35}
+  .fecha{display:flex;align-items:center;justify-content:center;gap:10px 14px;flex-wrap:wrap;margin-top:26px;font-size:17px;color:#6E6E73}
+  .fecha b{font-weight:400;color:#1D1D1F}.fecha i{font-style:normal;color:#A1A1A6}
+  .nota{font-size:15px;line-height:1.6;color:#6E6E73;max-width:52ch;margin:22px auto 0}
+  .nota2{font-size:14px;color:#86868B;margin-top:10px}
+  .nota2 a{color:#424245;border-bottom:1px solid #D2D2D7}
   .grilla2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1060px;margin:56px auto 0}
   .grilla3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1100px;margin:56px auto 0}
-  .tarjeta{box-sizing:border-box;display:flex;flex-direction:column;gap:16px;padding:12px;border:1px solid #2A211A;border-radius:14px;background:linear-gradient(180deg,#140E0A,#0B0806);transition:border-color .16s,transform .16s}
+  .tarjeta{box-sizing:border-box;display:flex;flex-direction:column;gap:16px;padding:10px;border-radius:22px;background:#F5F5F7;transition:border-color .16s,transform .16s}
   .tarjeta .video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
-  .tarjeta .video::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,8,6,0) 40%,rgba(11,8,6,.75) 100%)}
+  .tarjeta .video::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,8,6,0) 40%,rgba(0,0,0,.35) 100%)}
   .tarjeta .play{z-index:2}
-  .dur{position:absolute;z-index:2;right:14px;bottom:16px;padding:5px 10px;border-radius:999px;background:rgba(7,5,4,.75);border:1px solid rgba(237,230,220,.18);font-size:13px;color:#EDE6DC}
+  .dur{position:absolute;z-index:2;right:14px;bottom:16px;padding:5px 10px;border-radius:999px;background:rgba(7,5,4,.75);border:1px solid rgba(237,230,220,.18);font-size:13px;color:#1D1D1F}
   .tit{display:flex;align-items:baseline;gap:14px;padding:0 6px 8px}
-  .tit span:first-child{font-size:14px;color:#C9A46A;flex-shrink:0}
-  .tit span:last-child{font-size:19px;line-height:1.35;letter-spacing:-.01em;color:#EDE6DC}
+  .tit span:first-child{font-size:14px;color:#9A7535;flex-shrink:0}
+  .tit span:last-child{font-size:19px;line-height:1.35;letter-spacing:-.01em;color:#1D1D1F}
   .tabla{max-width:1100px;margin:56px auto 0}
-  .fila{display:grid;grid-template-columns:1.1fr 1fr 1.4fr 1.5fr 1fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid #1E1712;font-size:16px;color:#9A8D7E}
-  .fila.head{padding:0 0 16px;border-bottom-color:#2A211A;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#7D7266}
-  .fila .c{font-size:19px;color:#EDE6DC}.fila .r{color:#EDE6DC;line-height:1.45}
+  .fila{display:grid;grid-template-columns:1.1fr 1fr 1.4fr 1.5fr 1fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid #E8E8ED;font-size:16px;color:#6E6E73}
+  .fila.head{padding:0 0 16px;border-bottom-color:#D2D2D7;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#86868B}
+  .fila .c{font-size:19px;color:#1D1D1F}.fila .r{color:#1D1D1F;line-height:1.45}
   .fila .l{display:flex;gap:16px;justify-content:flex-end;flex-wrap:wrap;font-size:15px}
   .fila .l a{white-space:nowrap}
-  .lbl{display:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7D7266;margin-bottom:4px}
-  .testi{display:flex;flex-direction:column;gap:16px;padding:12px;border:1px solid #2A211A;border-radius:14px;background:linear-gradient(180deg,#140E0A,#0B0806)}
-  .testi .n{font-size:18px;color:#EDE6DC}.testi .ni{font-size:14px;color:#7D7266;margin-top:4px}
-  .testi .re{font-size:15px;line-height:1.5;color:#9A8D7E;margin-top:12px;padding-top:12px;border-top:1px solid #1E1712}
+  .lbl{display:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#86868B;margin-bottom:4px}
+  .testi{display:flex;flex-direction:column;gap:16px;padding:10px;border-radius:22px;background:#F5F5F7}
+  .testi .n{font-size:18px;color:#1D1D1F}.testi .ni{font-size:14px;color:#86868B;margin-top:4px}
+  .testi .re{font-size:15px;line-height:1.5;color:#6E6E73;margin-top:12px;padding-top:12px;border-top:1px solid #E8E8ED}
   @media (max-width:900px){
     .grilla2,.grilla3{grid-template-columns:1fr;gap:20px}
     .fila.head{display:none}
-    .fila{grid-template-columns:1fr;gap:10px;padding:22px;border:1px solid #2A211A;border-radius:14px;background:#0E0A08;margin-bottom:12px}
+    .fila{grid-template-columns:1fr;gap:10px;padding:22px;border:1px solid #D2D2D7;border-radius:14px;background:#FFFFFF;margin-bottom:12px}
     .fila .l{justify-content:flex-start}
     .lbl{display:block}
   }
@@ -46,6 +46,10 @@
     .acciones{flex-direction:column;align-items:stretch}
     .acciones .btn{width:100%}
   }
+  .tarjeta .video,.testi .video{border-radius:14px}
+  .tit{padding:0 8px 10px}
+  .testi .n{font-weight:600}
+  .fila .c{font-weight:600}
 </style>
 <script src="../assets/config.js"></script>
 <script src="../assets/funnel.js"></script>
@@ -59,14 +63,14 @@
 </div></header>
 
 <section class="hero">
-  <div class="pill"><span style="color:#C9A46A">✓</span> Llamada confirmada</div>
+  <div class="pill"><span style="color:#9A7535">✓</span> Llamada confirmada</div>
   <h1><span id="saludo"></span><span id="tu">Tu</span> llamada está agendada.<br><span class="grad-arena">Falta un paso.</span></h1>
   <div class="bajada">Mira este video de 2 minutos antes de la llamada. Es importante.</div>
 
   <div class="marco"><div class="video" id="video-confirmacion"><div class="placeholder">Video de confirmación</div><div class="play"></div></div></div>
 
   <div class="fecha">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A46A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A7535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
     <b id="fecha">Revisá tu mail de confirmación</b><i id="sep">·</i><b id="hora"></b><i>·</i><span>Google Meet</span>
   </div>
 
