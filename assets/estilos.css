@@ -63,8 +63,8 @@ h2{font-weight:600;letter-spacing:-.025em;text-wrap:balance;color:#1D1D1F}
 .btn-grande{height:64px;padding:0 42px;font-size:19px}
 
 /* Muro de resultados */
-.muro-sec{margin-top:60px;position:relative;isolation:isolate;padding:300px 0 280px;overflow:hidden;
-  background:linear-gradient(180deg,#FFFFFF 0,#C7C7CC 70px,#5A5A5E 150px,#111 230px,#000 280px,#000 calc(100% - 280px),#111 calc(100% - 230px),#5A5A5E calc(100% - 150px),#C7C7CC calc(100% - 70px),#FFFFFF 100%)}
+.muro-sec{margin-top:100px;position:relative;isolation:isolate;padding:200px 0 160px;overflow:hidden;
+  background:linear-gradient(180deg,#FFFFFF 0,#AEAEB2 40px,#2C2C2E 85px,#000 110px,#000 calc(100% - 110px),#2C2C2E calc(100% - 85px),#AEAEB2 calc(100% - 40px),#FFFFFF 100%)}
 .muro-sec h2,.muro-sec .cifra{color:#F5F5F7}
 .muro-sec .eyebrow{color:#C9A46A}
 .muro-sec .glow{display:none}
