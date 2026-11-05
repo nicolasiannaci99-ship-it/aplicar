@@ -50,6 +50,18 @@
   .tit{padding:0 8px 10px}
   .testi .n{font-weight:600}
   .fila .c{font-weight:600}
+  .paso{max-width:1240px;margin:0 auto;padding:130px 5vw 0;scroll-margin-top:60px}
+  .paso .num{width:44px;height:44px;margin:0 auto 18px;border-radius:50%;background:#1D1D1F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600}
+  .paso .marco{margin-top:44px}
+  .paso .acciones{margin-top:36px}
+  .paso .nota2{text-align:center;margin-top:20px;font-size:15px}
+  .pasos-mini{display:flex;align-items:center;justify-content:center;gap:12px 16px;flex-wrap:wrap;margin-top:34px}
+  .pasos-mini a{display:flex;align-items:center;gap:10px;padding:10px 18px 10px 10px;border-radius:999px;background:#F5F5F7;color:#1D1D1F;font-size:15px;font-weight:500}
+  .pasos-mini a:hover{background:#E8E8ED;color:#1D1D1F}
+  .pasos-mini span{width:26px;height:26px;border-radius:50%;background:#1D1D1F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .pasos-mini i{width:18px;height:1px;background:#D2D2D7}
+  @media (max-width:700px){.pasos-mini{flex-direction:column;align-items:stretch;max-width:320px;margin-left:auto;margin-right:auto}.pasos-mini i{display:none}.paso{padding-top:100px}}
+  @media (max-width:560px){.paso{padding-left:16px;padding-right:16px}}
 </style>
 <script src="../assets/config.js"></script>
 <script src="../assets/funnel.js"></script>
@@ -64,29 +76,46 @@
 
 <section class="hero">
   <div class="pill"><span style="color:#9A7535">✓</span> Llamada confirmada</div>
-  <h1><span id="saludo"></span><span id="tu">Tu</span> llamada está agendada.<br><span class="grad-arena">Falta un paso.</span></h1>
-  <div class="bajada">Mira este video de 2 minutos antes de la llamada. Es importante.</div>
-
-  <div class="marco"><div class="video" id="video-confirmacion"><div class="placeholder">Video de confirmación</div><div class="play"></div></div></div>
-
+  <h1><span id="saludo"></span><span id="tu">Tu</span> llamada ya está agendada.<br><span class="grad-arena">Te quedan 3 pasos.</span></h1>
   <div class="fecha">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A7535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
     <b id="fecha">Revisá tu mail de confirmación</b><i id="sep">·</i><b id="hora"></b><i>·</i><span>Google Meet</span>
   </div>
-
-  <div class="acciones">
-    <a id="gcal" href="#" target="_blank" rel="noopener" class="btn btn-plata">Agregar a mi calendario <span>→</span></a>
-    <a href="#" target="_blank" rel="noopener" class="btn btn-borde wa">Guardar nuestro WhatsApp</a>
-  </div>
-  <p class="nota">En las próximas horas te escribe alguien de nuestro equipo por WhatsApp para confirmar y enviarte material para la llamada.</p>
-  <p class="nota2">¿Usás Apple Calendar u Outlook? <a href="#" id="ics">Descargá el archivo .ics</a></p>
+  <nav class="pasos-mini"><a href="#paso-1"><span>1</span>Mirá el video</a><i></i><a href="#paso-2"><span>2</span>Confirmá por WhatsApp</a><i></i><a href="#paso-3"><span>3</span>Sacate las dudas</a></nav>
 </section>
 
-<section class="seccion">
+<!-- PASO 1 -->
+<section class="paso" id="paso-1">
   <div class="cabecera">
-    <div class="eyebrow">Antes de la llamada</div>
-    <h2 class="h2">Las preguntas que todos nos hacen <span class="grad-arena">antes de arrancar.</span></h2>
-    <p class="sub">Mira las que te interesen. Son videos cortos.</p>
+    <div class="num">1</div>
+    <div class="eyebrow">Paso 1</div>
+    <h2 class="h2">Mirá este video.</h2>
+    <p class="sub">Dura menos de 2 minutos y te explica cómo va a ser la llamada.</p>
+  </div>
+  <div class="marco"><div class="video" id="video-confirmacion"><div class="placeholder">Video de confirmación</div><div class="play"></div></div></div>
+</section>
+
+<!-- PASO 2 -->
+<section class="paso" id="paso-2">
+  <div class="cabecera">
+    <div class="num">2</div>
+    <div class="eyebrow">Paso 2</div>
+    <h2 class="h2">Confirmá tu llamada por WhatsApp.</h2>
+    <p class="sub">Mandanos el mensaje (ya está escrito) para confirmar tu lugar. Por ahí te mandamos el material para la llamada.</p>
+  </div>
+  <div class="acciones">
+    <a href="#" target="_blank" rel="noopener" class="btn btn-plata btn-grande wa">Confirmar por WhatsApp <span>→</span></a>
+  </div>
+  <p class="nota2"><a id="gcal" href="#" target="_blank" rel="noopener">Agregar a Google Calendar</a> · <a href="#" id="ics">Apple Calendar / Outlook (.ics)</a></p>
+</section>
+
+<!-- PASO 3 -->
+<section class="paso" id="paso-3">
+  <div class="cabecera">
+    <div class="num">3</div>
+    <div class="eyebrow">Paso 3</div>
+    <h2 class="h2">Sacate las dudas que tengas.</h2>
+    <p class="sub">Las preguntas que todos nos hacen antes de arrancar. Son videos cortos.</p>
   </div>
   <div class="grilla3" id="breakouts"></div>
 </section>
@@ -169,7 +198,7 @@
   /* WhatsApp con nombre, fecha y UTMs */
   var u = window.MC_UTM || {};
   var utmTxt = Object.keys(u).length ? ' [' + Object.keys(u).map(function (k) { return k + '=' + u[k]; }).join(' ') + ']' : '';
-  var msg = 'Hola, soy ' + (nombre || '(tu nombre)') + '. Acabo de agendar mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase() + ' a las ' + horaTexto : '') + '.' + utmTxt;
+  var msg = 'Hola, soy ' + (nombre || '(tu nombre)') + '. Agendé mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase() + ' a las ' + horaTexto : '') + ' y la confirmo.' + utmTxt;
   var wa = 'https://wa.me/' + String(C.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
   document.querySelectorAll('.wa').forEach(function (a) { a.href = wa; a.addEventListener('click', function () { mcTrack('Contact'); }); });
 
