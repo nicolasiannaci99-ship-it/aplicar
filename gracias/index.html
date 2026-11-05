@@ -120,17 +120,6 @@
   <div class="grilla3" id="breakouts"></div>
 </section>
 
-<section class="seccion">
-  <div class="cabecera">
-    <div class="eyebrow">Casos verificables</div>
-    <h2 class="h2">No nos creas a nosotros. <span class="grad-arena">Entra y miralo vos.</span></h2>
-    <p class="sub">Canales reales de clientes. Cada link lleva al canal y al video.</p>
-  </div>
-  <div class="tabla" id="casos">
-    <div class="fila head"><span>Cliente</span><span>Nicho</span><span>Resultado</span><span>Antes → Después</span><span style="text-align:right">Links</span></div>
-  </div>
-</section>
-
 <section class="muro-sec">
   <div class="glow"></div>
   <div class="muro-top">
@@ -142,15 +131,7 @@
   <div class="muro-vent"><div class="muro" id="muro"></div></div>
 </section>
 
-<section class="seccion" style="padding-top:80px">
-  <div class="cabecera">
-    <div class="eyebrow">Testimonios</div>
-    <h2 class="h2">En sus propias <span class="grad-arena">palabras.</span></h2>
-  </div>
-  <div class="grilla3" id="testimonios"></div>
-</section>
-
-<section class="cta-final" style="margin-top:150px"><div class="in">
+<section class="cta-final"><div class="in">
   <h2>Nos vemos en <span class="grad-arena">la llamada.</span></h2>
   <p>Si alguien más participa en la decisión (socio, pareja), invitalo a la llamada. Si te surge algo, avisanos por WhatsApp y la reprogramamos.</p>
   <a href="#" target="_blank" rel="noopener" class="btn btn-borde wa">Escribinos por WhatsApp <span>→</span></a>
@@ -225,27 +206,6 @@
     var v = el.querySelector('.video');
     if (!mcVideo(v, b.url, b.titulo)) v.innerHTML = placeholder('Video próximamente', true);
     $('breakouts').appendChild(el);
-  });
-
-  /* Casos */
-  C.casos.forEach(function (c) {
-    var el = document.createElement('div'); el.className = 'fila';
-    el.innerHTML =
-      '<div><span class="lbl">Cliente</span><span class="c">' + esc(c.cliente) + '</span></div>' +
-      '<div><span class="lbl">Nicho</span>' + esc(c.nicho) + '</div>' +
-      '<div><span class="lbl">Resultado</span><span class="r">' + esc(c.resultado) + '</span></div>' +
-      '<div><span class="lbl">Antes → Después</span>' + esc(c.antes) + '</div>' +
-      '<div class="l"><a href="' + esc(c.canal) + '" target="_blank" rel="noopener">Ver canal ↗</a><a href="' + esc(c.video) + '" target="_blank" rel="noopener">Ver video ↗</a></div>';
-    $('casos').appendChild(el);
-  });
-
-  /* Testimonios */
-  C.testimonios.forEach(function (t) {
-    var el = document.createElement('div'); el.className = 'testi';
-    el.innerHTML = '<div class="video vertical">' + placeholder('Video testimonio', true) + '</div>' +
-      '<div style="padding:0 6px 8px"><div class="n">' + esc(t.nombre) + '</div><div class="ni">' + esc(t.nicho) + '</div><div class="re">' + esc(t.resultado) + '</div></div>';
-    mcVideo(el.querySelector('.video'), t.url, t.nombre);
-    $('testimonios').appendChild(el);
   });
 
   mcMuro($('muro'));
