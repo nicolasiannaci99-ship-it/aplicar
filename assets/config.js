@@ -29,12 +29,12 @@ window.MC_CONFIG = {
   // Video de confirmación ("mirá este video de 2 minutos"). URL de embed. Vacío = placeholder.
   videoConfirmacionUrl: '',
 
-  // Videos cortos de preguntas frecuentes (breakouts). url = embed; vacío = placeholder.
+  // Videos cortos de objeciones (breakouts): 3 en fila en compu, uno debajo del otro en celular.
+  // url = embed; vacío = placeholder.
   breakouts: [
     { titulo: 'YouTube es lento: ¿en cuánto tiempo veo resultados?', duracion: '2:14', url: '' },
     { titulo: '¿Cuánto tiempo me lleva a mí?',                      duracion: '1:32', url: '' },
     { titulo: '¿Funciona en mi nicho?',                              duracion: '1:56', url: '' },
-    { titulo: '¿Cómo medimos si funciona?',                          duracion: '2:22', url: '' },
   ],
 
   // Casos verificables (tabla). canal / video = links reales.
