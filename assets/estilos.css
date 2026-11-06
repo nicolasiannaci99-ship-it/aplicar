@@ -62,6 +62,24 @@ h2{font-weight:600;letter-spacing:-.025em;text-wrap:balance;color:#1D1D1F}
 .btn-borde:hover{background:#E8E8ED;color:#1D1D1F}
 .btn-grande{height:64px;padding:0 42px;font-size:19px}
 
+/* El proceso (línea de tiempo) */
+.proceso{max-width:1240px;margin:0 auto;padding:140px 5vw 0}
+.proceso .h2{max-width:22ch;margin-left:auto;margin-right:auto}
+.linea{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px;margin-top:64px;position:relative}
+.linea::before{content:"";position:absolute;top:27px;left:calc(100%/12);right:calc(100%/12);height:2px;background:linear-gradient(90deg,#C9A46A,#E2C48F,#C9A46A)}
+.linea li{position:relative;text-align:center}
+.linea .n{position:relative;z-index:1;width:56px;height:56px;margin:0 auto;border-radius:50%;background:#1D1D1F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;box-shadow:0 0 0 6px #fff,0 10px 24px -6px rgba(201,164,106,.55)}
+.linea h3{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:#1D1D1F;margin-top:26px}
+.linea p{font-size:16px;line-height:1.55;color:#6E6E73;margin-top:10px}
+@media (max-width:1000px){
+  .linea{grid-template-columns:1fr;gap:34px;max-width:520px;margin-left:auto;margin-right:auto}
+  .linea::before{top:28px;bottom:28px;left:27px;right:auto;width:2px;height:auto;background:linear-gradient(180deg,#C9A46A,#E2C48F,#C9A46A)}
+  .linea li{text-align:left;padding-left:80px;min-height:56px}
+  .linea .n{position:absolute;left:0;top:0;margin:0}
+  .linea h3{margin-top:14px}
+}
+@media (max-width:560px){.proceso{padding-left:16px;padding-right:16px;padding-top:110px}}
+
 /* Muro de resultados */
 .muro-sec{margin-top:100px;position:relative;isolation:isolate;padding:200px 0 160px;overflow:hidden;
   background:linear-gradient(180deg,#FFFFFF 0,#AEAEB2 40px,#2C2C2E 85px,#000 110px,#000 calc(100% - 110px),#2C2C2E calc(100% - 85px),#AEAEB2 calc(100% - 40px),#FFFFFF 100%)}
