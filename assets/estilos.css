@@ -67,6 +67,13 @@ h2{font-weight:600;letter-spacing:-.025em;text-wrap:balance;color:#1D1D1F}
 /* El proceso (línea de tiempo) */
 .proceso{max-width:1240px;margin:0 auto;padding:140px 5vw 0}
 .proceso .h2{max-width:22ch;margin-left:auto;margin-right:auto}
+.caso{max-width:560px;margin:40px auto 0;padding:28px 32px;border-radius:22px;background:#F5F5F7;text-align:center}
+.caso-tag{font-size:13px;font-weight:600;color:#9A7535}
+.caso-nombre{font-size:17px;font-weight:600;color:#1D1D1F;margin-top:8px}
+.caso-cifra{font-size:clamp(28px,3.4vw,40px);font-weight:700;letter-spacing:-.03em;color:#1D1D1F;margin-top:6px;white-space:nowrap}
+.caso-cifra span{color:#C9A46A;font-weight:500}
+.caso p{font-size:16px;line-height:1.5;color:#6E6E73;margin-top:8px}
+@media (max-width:560px){.caso{padding:24px 18px}}
 .linea{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px;margin-top:64px;position:relative}
 .linea::before{content:"";position:absolute;top:27px;left:calc(100%/12);right:calc(100%/12);height:2px;background:linear-gradient(90deg,#C9A46A,#E2C48F,#C9A46A)}
 .linea li{position:relative;text-align:center}

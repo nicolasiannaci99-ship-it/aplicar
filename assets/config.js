@@ -40,7 +40,7 @@ window.MC_CONFIG = {
   // Casos verificables (tabla). canal / video = links reales.
   casos: [
     { cliente: 'Frank',          nicho: 'Trading',        resultado: '50K/mes desde YouTube',                antes: 'Canal desde cero',                        canal: '#', video: '#' },
-    { cliente: 'Joseph Ramírez', nicho: 'E-commerce B2B', resultado: '20K → 100K/mes',                       antes: '~7.000 suscriptores, #1 de su industria', canal: '#', video: '#' },
+    { cliente: 'Joseph Ramírez', nicho: 'E-commerce B2B', resultado: '20K → 135K/mes',                       antes: '~7.000 suscriptores, #1 de su industria', canal: '#', video: '#' },
     { cliente: 'Yari Taft',      nicho: 'Programadores',  resultado: 'Leads más nutridos y fáciles de cerrar', antes: 'Canal desde cero, ya facturaba 150K',     canal: '#', video: '#' },
   ],
 
