@@ -8,7 +8,7 @@ window.MC_CONFIG = {
   metaPixelId: '914352463951226', // VSL MSC (nico landing)
 
   // API de Conversiones: dirección de la función en Vercel (api/evento.js). Vacío = solo Pixel.
-  capiUrl: '',
+  capiUrl: 'https://myconsulting-capi.vercel.app/api/evento',
 
   // Número de WhatsApp con código de país, sin + ni espacios. Ej Argentina: '5491155554444'
   whatsapp: '19205234269',
