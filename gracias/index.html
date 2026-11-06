@@ -18,8 +18,6 @@
   .grilla2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1060px;margin:56px auto 0}
   .grilla3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1100px;margin:56px auto 0}
   .tarjeta{box-sizing:border-box;display:flex;flex-direction:column;gap:16px;padding:10px;border-radius:22px;background:#F5F5F7;transition:border-color .16s,transform .16s}
-  .tarjeta .video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
-  .tarjeta .video::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,8,6,0) 40%,rgba(0,0,0,.35) 100%)}
   .tarjeta .play{z-index:2}
   .dur{position:absolute;z-index:2;right:14px;bottom:16px;padding:5px 10px;border-radius:999px;background:rgba(7,5,4,.75);border:1px solid rgba(237,230,220,.18);font-size:13px;color:#1D1D1F}
   .tit{display:flex;align-items:baseline;gap:14px;padding:0 6px 8px}
@@ -120,18 +118,7 @@
   <div class="grilla3" id="breakouts"></div>
 </section>
 
-<section class="muro-sec">
-  <div class="glow"></div>
-  <div class="muro-top">
-    <div class="eyebrow">Muro de resultados</div>
-    <div class="cifra">+$39M <span>USD</span></div>
-    <h2>generados por clientes con YouTube.</h2>
-    <div class="datos"><span><b>7 años</b> escalando infoproductos</span><i></i><span>Capturas reales de canales que manejamos</span></div>
-  </div>
-  <div class="muro-vent"><div class="muro" id="muro"></div></div>
-</section>
-
-<section class="cta-final"><div class="in">
+<section class="cta-final" style="margin-top:60px"><div class="in">
   <h2>Nos vemos en <span class="grad-arena">la llamada.</span></h2>
   <p>Si alguien más participa en la decisión (socio, pareja), invitalo a la llamada. Si te surge algo, avisanos por WhatsApp y la reprogramamos.</p>
   <a href="#" target="_blank" rel="noopener" class="btn btn-borde wa">Escribinos por WhatsApp <span>→</span></a>
@@ -208,7 +195,6 @@
     $('breakouts').appendChild(el);
   });
 
-  mcMuro($('muro'));
 })();
 </script>
 </body>
