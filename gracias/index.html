@@ -61,8 +61,8 @@
   @media (max-width:700px){.pasos-mini{flex-direction:column;align-items:stretch;max-width:320px;margin-left:auto;margin-right:auto}.pasos-mini i{display:none}.paso{padding-top:100px}}
   @media (max-width:560px){.paso{padding-left:16px;padding-right:16px}}
 </style>
-<script src="../assets/config.js"></script>
-<script src="../assets/funnel.js"></script>
+<script src="../assets/config.js?v=2"></script>
+<script src="../assets/funnel.js?v=2"></script>
 <!-- Otros scripts de seguimiento (Google Analytics, Hotjar, etc.) van acá -->
 </head>
 <body>
@@ -139,7 +139,15 @@
   var placeholder = function (txt, chico) { return '<div class="placeholder">' + txt + '</div><div class="play' + (chico ? ' chico' : '') + '"></div>'; };
 
   /* Evento de Meta: Schedule */
-  if (!C.scheduleSoloCalificados || q.get('calificado') === '1') mcTrack('Schedule', null, q.get('invitee_uuid') ? 'Schedule.' + q.get('invitee_uuid') : null);
+  /* Facturación que eligió en Calendly ("Hoy en día cuanto estas generando mensualmente en USD") */
+  var facturacion = '';
+  q.forEach(function (v, k) { if (!facturacion && /^answer_/.test(k) && /\$\s*\d+\s*K/i.test(v)) facturacion = v.trim(); });
+  var calificado = (C.facturacionCalificada || []).indexOf(facturacion) > -1;
+  var uuid = q.get('invitee_uuid');
+  var datosAgenda = { facturacion: facturacion || 'sin dato', calificado: calificado ? 'si' : 'no' };
+  if (!C.scheduleSoloCalificados || calificado) mcTrack('Schedule', datosAgenda, uuid ? 'Schedule.' + uuid : null);
+  /* Evento aparte solo para calificados: sirve para optimizar los anuncios directo a esta gente */
+  if (calificado) mcTrack('AgendaCalificada', datosAgenda, uuid ? 'AgendaCalificada.' + uuid : null);
 
   /* Datos que manda Calendly en la redirección */
   var nombre = (q.get('invitee_full_name') || q.get('invitee_first_name') || '').trim();

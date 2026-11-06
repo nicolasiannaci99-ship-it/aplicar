@@ -30,6 +30,10 @@ window.MC_CONFIG = {
   //   true  → solo si la URL trae ?calificado=1
   scheduleSoloCalificados: false,
 
+  // Respuestas de Calendly a "Hoy en día cuanto estas generando mensualmente en USD" que cuentan como calificado.
+  // Tienen que estar escritas igual que en Calendly. Los calificados disparan además el evento "AgendaCalificada".
+  facturacionCalificada: ['$30K-$100K', '+$100K'],
+
   // ---------- Página de gracias ----------
 
   // Video de confirmación ("mirá este video de 2 minutos"). URL de embed. Vacío = placeholder.

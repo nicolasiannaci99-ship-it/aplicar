@@ -7,7 +7,7 @@
 const crypto = require('crypto');
 
 const VERSION = 'v23.0';
-const EVENTOS = ['PageView', 'ViewContent', 'Lead', 'Schedule', 'Contact', 'CompleteRegistration'];
+const EVENTOS = ['PageView', 'ViewContent', 'Lead', 'Schedule', 'Contact', 'CompleteRegistration', 'AgendaCalificada'];
 const ORIGENES = /^https:\/\/(www\.)?myconsulting\.io$|^https:\/\/nicolasiannaci99-ship-it\.github\.io$|^http:\/\/localhost(:\d+)?$/;
 
 const sha = (v) => crypto.createHash('sha256').update(v).digest('hex');

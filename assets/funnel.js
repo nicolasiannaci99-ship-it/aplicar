@@ -67,7 +67,8 @@
     // id: si se pasa uno fijo (ej. el de la reserva de Calendly), recargar la página no duplica el evento
     window.mcTrack = function (evento, datos, id) {
       id = id || nuevoId(evento);
-      fbq('track', evento, datos || {}, { eventID: id });
+      var estandar = /^(PageView|ViewContent|Lead|Schedule|Contact|CompleteRegistration)$/.test(evento);
+      fbq(estandar ? 'track' : 'trackCustom', evento, datos || {}, { eventID: id });
       // se espera un instante para que el Pixel cree la cookie _fbp y viaje también al servidor
       if (cookie('_fbp')) alServidor(evento, datos, id);
       else setTimeout(function () { alServidor(evento, datos, id); }, 600);
