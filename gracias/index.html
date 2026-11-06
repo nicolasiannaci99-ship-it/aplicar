@@ -139,7 +139,7 @@
   var placeholder = function (txt, chico) { return '<div class="placeholder">' + txt + '</div><div class="play' + (chico ? ' chico' : '') + '"></div>'; };
 
   /* Evento de Meta: Schedule */
-  if (!C.scheduleSoloCalificados || q.get('calificado') === '1') mcTrack('Schedule');
+  if (!C.scheduleSoloCalificados || q.get('calificado') === '1') mcTrack('Schedule', null, q.get('invitee_uuid') ? 'Schedule.' + q.get('invitee_uuid') : null);
 
   /* Datos que manda Calendly en la redirección */
   var nombre = (q.get('invitee_full_name') || q.get('invitee_first_name') || '').trim();

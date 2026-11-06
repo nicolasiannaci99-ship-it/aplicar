@@ -22,6 +22,39 @@
   } catch (e) {}
   window.MC_UTM = utm;
 
+  /* ---------- Datos de la persona (solo los que manda Calendly) ----------
+     Se usan para que Meta reconozca a quién agendó. El Pixel y el servidor los mandan cifrados (SHA-256). */
+  var persona = {};
+  var em = (q.get('invitee_email') || '').trim().toLowerCase();
+  if (em) persona.em = em;
+  if (q.get('invitee_first_name')) persona.fn = q.get('invitee_first_name').trim().toLowerCase();
+  if (q.get('invitee_last_name')) persona.ln = q.get('invitee_last_name').trim().toLowerCase();
+  q.forEach(function (v, k) {
+    if (!persona.ph && /^answer_|phone|text_reminder/.test(k) && /^[+\d\s().-]{8,20}$/.test(v) && v.replace(/\D/g, '').length >= 8) persona.ph = v.replace(/\D/g, '');
+  });
+
+  /* ---------- Cookies de Meta (_fbp / _fbc) ---------- */
+  var cookie = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
+  var fbclid = q.get('fbclid');
+  try {
+    if (fbclid) sessionStorage.setItem('mc_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
+  } catch (e) {}
+  var fbc = function () { var c = cookie('_fbc'); try { return c || sessionStorage.getItem('mc_fbc') || ''; } catch (e) { return c; } };
+
+  /* ---------- API de Conversiones: el mismo evento, desde el servidor ---------- */
+  var nuevoId = function (ev) { return ev + '.' + Date.now().toString(36) + '.' + Math.random().toString(36).slice(2, 10); };
+  var alServidor = function (evento, datos, id) {
+    if (!C.capiUrl) return;
+    var cuerpo = JSON.stringify({
+      event_name: evento, event_id: id, url: location.href, custom_data: datos || undefined,
+      user: { fbp: cookie('_fbp'), fbc: fbc(), em: persona.em, fn: persona.fn, ln: persona.ln, ph: persona.ph }
+    });
+    try {
+      // text/plain evita la consulta previa (CORS) y keepalive la deja terminar aunque se cierre la página
+      fetch(C.capiUrl, { method: 'POST', body: cuerpo, keepalive: true, mode: 'cors', headers: { 'Content-Type': 'text/plain' } }).catch(function () {});
+    } catch (e) {}
+  };
+
   /* ---------- Pixel de Meta ---------- */
   window.mcTrack = function () {};
   if (C.metaPixelId) {
@@ -30,9 +63,16 @@
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
       t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', C.metaPixelId);
-    fbq('track', 'PageView');
-    window.mcTrack = function (evento, datos) { fbq('track', evento, datos || {}); };
+    fbq('init', C.metaPixelId, persona);
+    // id: si se pasa uno fijo (ej. el de la reserva de Calendly), recargar la página no duplica el evento
+    window.mcTrack = function (evento, datos, id) {
+      id = id || nuevoId(evento);
+      fbq('track', evento, datos || {}, { eventID: id });
+      // se espera un instante para que el Pixel cree la cookie _fbp y viaje también al servidor
+      if (cookie('_fbp')) alServidor(evento, datos, id);
+      else setTimeout(function () { alServidor(evento, datos, id); }, 600);
+    };
+    mcTrack('PageView');
   }
 
   /* ---------- Muro de resultados (4 columnas que se desplazan) ---------- */
