@@ -41,12 +41,6 @@
     <div class="eyebrow">El proceso</div>
     <h2 class="h2">2 videos por semana, <span class="grad-plata">100% hechos por nosotros.</span></h2>
   </div>
-  <div class="caso">
-    <div class="caso-tag">Caso real</div>
-    <div class="caso-nombre">Joseph Ramírez</div>
-    <div class="caso-cifra">De 20K/mes <span>→</span> 135K/mes</div>
-    <p>Convirtió YouTube en su fuente principal de adquisición de clientes.</p>
-  </div>
   <ol class="linea">
     <li><span class="n">1</span><h3>Investigación e ideas</h3><p>Pensamos ideas de videos que atraigan exactamente a tu público objetivo.</p></li>
     <li><span class="n">2</span><h3>Guiones</h3><p>Escribimos el guion en formato de esquema o palabra por palabra, como te resulte más cómodo. Pensado para más tiempo de visualización y más conversiones.</p></li>
@@ -55,6 +49,14 @@
     <li><span class="n">5</span><h3>Miniaturas</h3><p>Probamos varias versiones para lograr la mayor tasa de clics posible.</p></li>
     <li><span class="n">6</span><h3>SEO, seguimiento de leads y publicación</h3><p>Medimos las llamadas y ventas que trae cada video, los optimizamos para las búsquedas y los publicamos por vos.</p></li>
   </ol>
+  <div class="caso">
+    <div class="caso-tag">Caso real</div>
+    <div class="caso-nombre">Joseph Ramírez</div>
+    <div class="caso-cifra">De 20K/mes <span>→</span> 135K/mes</div>
+    <p>Convirtió YouTube en su fuente principal de adquisición de clientes.</p>
+    <div class="caso-video"><div class="video" id="caso-video"><div class="placeholder">Video del caso</div><div class="play chico"></div></div></div>
+    <a href="#agenda" class="btn btn-plata">Agendá tu llamada <span>→</span></a>
+  </div>
 </section>
 
 <section class="muro-sec">
@@ -100,6 +102,7 @@
   var C = window.MC_CONFIG;
   mcVideo(document.getElementById('vsl'), C.vslEmbedUrl, 'Video');
   mcMuro(document.getElementById('muro'));
+  mcVideo(document.getElementById('caso-video'), C.casoVideoUrl, 'Caso Joseph Ramírez');
 
   // Calendly embebido, con los UTMs del anuncio
   function mcCalendly() {

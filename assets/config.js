@@ -19,6 +19,9 @@ window.MC_CONFIG = {
   // Video de venta (VSL) de la landing. URL de "embed" (Loom, YouTube, Wistia, Vidalytics...)
   vslEmbedUrl: 'https://www.loom.com/embed/461d65bebeac4c14add36a66125f3b1e?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true',
 
+  // Mini video del caso real (Joseph Ramírez) en la landing. URL de embed; vacío = placeholder.
+  casoVideoUrl: 'https://www.loom.com/embed/8225e7123d814de3b4bf72fadb51fd93?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&hide_speed=true',
+
   // Evento "Schedule" en la página de gracias:
   //   false → se dispara siempre que alguien llega a /gracias (recomendado al arrancar)
   //   true  → solo si la URL trae ?calificado=1
