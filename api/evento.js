@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(204).end();
-  if (req.method === 'GET') return res.status(200).json({ ok: true, configurado: !!(process.env.META_PIXEL_ID && process.env.META_CAPI_TOKEN) });
+  if (req.method === 'GET') return res.status(200).json({ ok: true, pixel: !!process.env.META_PIXEL_ID, token: !!process.env.META_CAPI_TOKEN, prueba: !!process.env.META_TEST_EVENT_CODE });
   if (req.method !== 'POST') return res.status(405).end();
   if (origen && !ORIGENES.test(origen)) return res.status(403).json({ error: 'origen' });
 
