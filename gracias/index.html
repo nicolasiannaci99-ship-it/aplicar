@@ -171,9 +171,8 @@
   if (ini) gcal += '&dates=' + fmt(ini) + '/' + fmt(fin);
   $('gcal').href = gcal;
 
-  /* WhatsApp con nombre, fecha y UTMs */
-  var u = window.MC_UTM || {};
-  var msg = 'Hola, soy ' + (nombre || '(tu nombre)') + '. Agendé mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase().replace(',', '') + ' a las ' + horaTexto : '') + ' y la confirmo.';
+  /* WhatsApp con nombre y fecha (sin datos técnicos: lo lee una persona) */
+  var msg = (nombre ? 'Hola, soy ' + nombre + '.' : '¡Hola!') + ' Agendé mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase().replace(',', '') + ' a las ' + horaTexto : '') + ' y la confirmo.';
   var wa = 'https://wa.me/' + String(C.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
   document.querySelectorAll('.wa').forEach(function (a) { a.href = wa; a.addEventListener('click', function () { mcTrack('Contact'); }); });
 
