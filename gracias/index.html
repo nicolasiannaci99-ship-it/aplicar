@@ -61,8 +61,8 @@
   @media (max-width:700px){.pasos-mini{flex-direction:column;align-items:stretch;max-width:320px;margin-left:auto;margin-right:auto}.pasos-mini i{display:none}.paso{padding-top:100px}}
   @media (max-width:560px){.paso{padding-left:16px;padding-right:16px}}
 </style>
-<script src="../assets/config.js?v=2"></script>
-<script src="../assets/funnel.js?v=2"></script>
+<script src="../assets/config.js?v=3"></script>
+<script src="../assets/funnel.js?v=3"></script>
 <!-- Otros scripts de seguimiento (Google Analytics, Hotjar, etc.) van acá -->
 </head>
 <body>
@@ -173,8 +173,7 @@
 
   /* WhatsApp con nombre, fecha y UTMs */
   var u = window.MC_UTM || {};
-  var utmTxt = Object.keys(u).length ? ' [' + Object.keys(u).map(function (k) { return k + '=' + u[k]; }).join(' ') + ']' : '';
-  var msg = 'Hola, soy ' + (nombre || '(tu nombre)') + '. Agendé mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase() + ' a las ' + horaTexto : '') + ' y la confirmo.' + utmTxt;
+  var msg = 'Hola, soy ' + (nombre || '(tu nombre)') + '. Agendé mi llamada estratégica' + (ini ? ' para el ' + fechaTexto.toLowerCase().replace(',', '') + ' a las ' + horaTexto : '') + ' y la confirmo.';
   var wa = 'https://wa.me/' + String(C.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
   document.querySelectorAll('.wa').forEach(function (a) { a.href = wa; a.addEventListener('click', function () { mcTrack('Contact'); }); });
 
