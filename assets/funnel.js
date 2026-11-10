@@ -22,6 +22,24 @@
   } catch (e) {}
   window.MC_UTM = utm;
 
+  /* ---------- A/B test ----------
+     Cada visitante queda fijo en una versión (A o B) para siempre en ese navegador.
+     La versión viaja en todos los eventos (Pixel, servidor y Calendly) para comparar resultados.
+     Para ver una versión a mano: ?ver=A o ?ver=B (no cambia la versión guardada). */
+  window.MC_AB = null;
+  var AB = C.abTest;
+  var guardado = function (k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
+  if (AB && AB.id && AB.variantes) {
+    var kv = 'mc_ab_' + AB.id, ver = guardado(kv);
+    var esLanding = base === '';
+    if (!ver && esLanding) { ver = Math.random() < 0.5 ? 'A' : 'B'; guardado(kv, ver); }
+    var forzada = q.get('ver');
+    if (forzada && AB.variantes[forzada]) ver = forzada;
+    var visitante = guardado('mc_vid');
+    if (!visitante) { visitante = Date.now().toString(36) + Math.random().toString(36).slice(2, 10); guardado('mc_vid', visitante); }
+    if (ver) window.MC_AB = { id: AB.id, ver: ver, forzada: !!forzada, visitante: visitante };
+  }
+
   /* ---------- Datos de la persona (solo los que manda Calendly) ----------
      Se usan para que Meta reconozca a quién agendó. El Pixel y el servidor los mandan cifrados (SHA-256). */
   var persona = {};
@@ -47,6 +65,7 @@
     if (!C.capiUrl) return;
     var cuerpo = JSON.stringify({
       event_name: evento, event_id: id, url: location.href, custom_data: datos || undefined,
+      ab: window.MC_AB && !window.MC_AB.forzada ? { id: window.MC_AB.id, ver: window.MC_AB.ver } : undefined,
       user: { fbp: cookie('_fbp'), fbc: fbc(), em: persona.em, fn: persona.fn, ln: persona.ln, ph: persona.ph }
     });
     try {
@@ -67,6 +86,7 @@
     // id: si se pasa uno fijo (ej. el de la reserva de Calendly), recargar la página no duplica el evento
     window.mcTrack = function (evento, datos, id) {
       id = id || nuevoId(evento);
+      if (window.MC_AB) { datos = Object.assign({}, datos || {}); datos.ab_test = window.MC_AB.id; datos.variante = window.MC_AB.ver; }
       var estandar = /^(PageView|ViewContent|Lead|Schedule|Contact|CompleteRegistration)$/.test(evento);
       fbq(estandar ? 'track' : 'trackCustom', evento, datos || {}, { eventID: id });
       // se espera un instante para que el Pixel cree la cookie _fbp y viaje también al servidor
@@ -74,6 +94,15 @@
       else setTimeout(function () { alServidor(evento, datos, id); }, 600);
     };
     mcTrack('PageView');
+  }
+
+  /* Eventos solo para el A/B (no van a Meta): se cuentan una vez por visitante */
+  window.mcAB = function (evento) {
+    if (!window.MC_AB || window.MC_AB.forzada) return;
+    alServidor(evento, null, evento + '.' + window.MC_AB.id + '.' + window.MC_AB.visitante);
+  };
+  if (window.MC_AB && base === '') {
+    mcAB('ABVisita');
   }
 
   /* ---------- Muro de resultados (4 columnas que se desplazan) ---------- */

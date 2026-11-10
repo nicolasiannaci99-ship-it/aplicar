@@ -11,8 +11,8 @@
 <meta property="og:image" content="assets/logo.png">
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="assets/estilos.css">
-<script src="assets/config.js?v=3"></script>
-<script src="assets/funnel.js?v=3"></script>
+<script src="assets/config.js?v=4"></script>
+<script src="assets/funnel.js?v=4"></script>
 <!-- Otros scripts de seguimiento (Google Analytics, Hotjar, etc.) van acá -->
 </head>
 <body>
@@ -24,7 +24,8 @@
 
 <section class="hero">
   <div class="pill">Para infoproductores facturando +30K/mes en adelante</div>
-  <h1>Cómo convertir tu canal de YouTube en tu <span class="grad-plata">principal fuente de adquisición de clientes</span></h1>
+  <h1 id="titulo">Cómo convertir tu canal de YouTube en tu <span class="grad-plata">principal fuente de adquisición de clientes</span></h1>
+  <script>/* A/B: título según la versión del visitante */ (function () { var ab = window.MC_AB, t = ab && MC_CONFIG.abTest.variantes[ab.ver]; if (t) document.getElementById('titulo').innerHTML = t; })();</script>
   <div class="bajada">Con 2 videos por semana y sin depender de anuncios.</div>
 
   <div class="marco"><div class="video" id="vsl"></div></div>
@@ -109,6 +110,8 @@
   function mcCalendly() {
     var u = window.MC_UTM || {}, utm = {};
     Object.keys(u).forEach(function (k) { utm[k.replace(/_(\w)/, function (_, c) { return c.toUpperCase(); })] = u[k]; });
+    // A/B: la versión queda guardada en la reserva de Calendly (al final de utm_term)
+    if (window.MC_AB && !window.MC_AB.forzada) utm.utmTerm = (utm.utmTerm ? utm.utmTerm + '|' : '') + window.MC_AB.id + ':' + window.MC_AB.ver;
     Calendly.initInlineWidget({
       url: C.calendlyUrl + '?hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=1d1d1f',
       parentElement: document.getElementById('calendly'),
@@ -118,7 +121,9 @@
 
   // Cuando agenda: si Calendly no tiene configurada la redirección, lo mandamos igual a /gracias
   window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://calendly.com' || !e.data || e.data.event !== 'calendly.event_scheduled') return;
+    if (e.origin !== 'https://calendly.com' || !e.data) return;
+    if (e.data.event === 'calendly.date_and_time_selected' && window.mcAB) mcAB('ABHorario');
+    if (e.data.event !== 'calendly.event_scheduled') return;
     setTimeout(function () { location.href = 'gracias/' + location.search; }, 8000); // respaldo: Calendly ya redirige solo
   });
 </script>

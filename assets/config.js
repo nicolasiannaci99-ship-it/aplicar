@@ -30,6 +30,17 @@ window.MC_CONFIG = {
   //   true  → solo si la URL trae ?calificado=1
   scheduleSoloCalificados: false,
 
+  // A/B test del título de la landing. Cada visitante ve una versión al azar (50/50) y la mantiene.
+  // Para cerrar el test: dejar solo la ganadora en A y borrar B (o poner abTest: null).
+  // Para cambiar de test, cambiar el id (ej. 'titulo-2'): los visitantes se reparten de nuevo y se cuenta aparte.
+  abTest: {
+    id: 'titulo-1',
+    variantes: {
+      A: 'Cómo convertir tu canal de YouTube en tu <span class="grad-plata">principal fuente de adquisición de clientes</span>',
+      B: 'Escalar tu infoproducto a <span class="grad-plata">100K/mes con YouTube</span>'
+    }
+  },
+
   // Respuestas de Calendly a "Hoy en día cuanto estas generando mensualmente en USD" que cuentan como calificado.
   // Tienen que estar escritas igual que en Calendly. Los calificados disparan además el evento "AgendaCalificada".
   facturacionCalificada: ['$30K-$100K', '+$100K'],
