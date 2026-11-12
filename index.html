@@ -10,9 +10,9 @@
 <meta property="og:description" content="Con 2 videos por semana y sin depender de anuncios.">
 <meta property="og:image" content="assets/logo.png">
 <link rel="icon" href="assets/logo.png">
-<link rel="stylesheet" href="assets/estilos.css">
-<script src="assets/config.js?v=4"></script>
-<script src="assets/funnel.js?v=4"></script>
+<link rel="stylesheet" href="assets/estilos.css?v=5">
+<script src="assets/config.js?v=5"></script>
+<script src="assets/funnel.js?v=5"></script>
 <!-- Otros scripts de seguimiento (Google Analytics, Hotjar, etc.) van acá -->
 </head>
 <body>
@@ -32,8 +32,9 @@
 
   <div id="agenda">
     <div class="eyebrow">Aplicación</div>
-    <h2>Agenda tu llamada estratégica</h2>
-    <div class="cal-caja"><div class="cal-widget" id="calendly"></div></div>
+    <h2 id="agenda-titulo">Aplicá a tu llamada estratégica</h2>
+    <p class="ap-nota" id="ap-nota">Tarda 1 minuto. Si calificás, agendás tu llamada en el paso siguiente.</p>
+    <div class="ap-caja" id="ap-caja"><div class="ap" id="aplicacion"></div><div class="cal-widget" id="calendly" hidden></div></div>
   </div>
 </section>
 
@@ -106,14 +107,25 @@
   mcMuro(document.getElementById('muro'));
   mcVideo(document.getElementById('caso-video'), C.casoVideoUrl, 'Caso Joseph Ramírez');
 
-  // Calendly embebido, con los UTMs del anuncio
-  function mcCalendly() {
+  // Calendly embebido, con los UTMs del anuncio. Se abre recién cuando la aplicación califica (con nombre y email precargados).
+  var calListo = false, calDatos = null;
+  function mcCalendly() { calListo = true; if (calDatos) abrirCalendly(); }
+  window.mcAbrirCalendly = function (datos) { calDatos = datos; document.getElementById('calendly').hidden = false; if (calListo) abrirCalendly(); };
+  function abrirCalendly() {
+    if (document.getElementById('calendly').childElementCount) return;
+    // nombre, email y la pregunta de facturación (a5) de Calendly se completan solos con lo que puso en la aplicación
+    var d = calDatos || {}, pre = '';
+    if (d.name) pre += '&name=' + encodeURIComponent(d.name);
+    if (d.email) pre += '&email=' + encodeURIComponent(d.email);
+    if (d.tel) pre += '&a1=' + encodeURIComponent('+' + d.tel.replace(/\D/g, ''));   // WhatsApp
+    if (d.ig) pre += '&a2=' + encodeURIComponent(d.ig);                                  // Instagram
+    if (d.monto) pre += '&a5=' + encodeURIComponent(d.monto >= 100000 ? '+$100K' : '$30K-$100K');
     var u = window.MC_UTM || {}, utm = {};
     Object.keys(u).forEach(function (k) { utm[k.replace(/_(\w)/, function (_, c) { return c.toUpperCase(); })] = u[k]; });
     // A/B: la versión queda guardada en la reserva de Calendly (al final de utm_term)
     if (window.MC_AB && !window.MC_AB.forzada) utm.utmTerm = (utm.utmTerm ? utm.utmTerm + '|' : '') + window.MC_AB.id + ':' + window.MC_AB.ver;
     Calendly.initInlineWidget({
-      url: C.calendlyUrl + '?hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=1d1d1f',
+      url: C.calendlyUrl + '?hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=1d1d1f' + pre,
       parentElement: document.getElementById('calendly'),
       utm: utm
     });
@@ -127,5 +139,6 @@
     setTimeout(function () { location.href = 'gracias/' + location.search; }, 8000); // respaldo: Calendly ya redirige solo
   });
 </script>
+<script src="assets/aplicacion.js?v=1"></script>
 </body>
 </html>

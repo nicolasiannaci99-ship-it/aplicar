@@ -9,9 +9,9 @@
 const crypto = require('crypto');
 
 const VERSION = 'v23.0';
-const EVENTOS = ['PageView', 'ViewContent', 'Lead', 'Schedule', 'Contact', 'CompleteRegistration', 'AgendaCalificada', 'ABVisita', 'ABHorario'];
+const EVENTOS = ['PageView', 'ViewContent', 'Lead', 'Schedule', 'Contact', 'CompleteRegistration', 'AgendaCalificada', 'Aplicacion_Calificada', 'Aplicacion_Descalificada', 'ABVisita', 'ABHorario'];
 const SOLO_AB = ['ABVisita', 'ABHorario'];            // estos no van a Meta
-const CUENTAN_AB = ['ABVisita', 'ABHorario', 'Schedule', 'AgendaCalificada', 'Contact'];
+const CUENTAN_AB = ['ABVisita', 'ABHorario', 'Aplicacion_Calificada', 'Aplicacion_Descalificada', 'Schedule', 'AgendaCalificada', 'Contact'];
 
 /* ---------- Contadores del A/B en Redis (Upstash, por REST) ---------- */
 const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;

@@ -41,6 +41,11 @@ window.MC_CONFIG = {
     }
   },
 
+  // Formulario de aplicación antes del Calendly
+  aplicacionUrl: 'https://script.google.com/macros/s/AKfycbxMdUnojSW-TU_knlsC2lcfDLaqPW3Mr3jmMpSFasz-YCDGOlwk5m_tp5mVSgu930vkvQ/exec', // URL de la Aplicación web de Apps Script de la planilla (termina en /exec). Vacío = no se guarda
+  minimoFacturacion: 30000,                                             // USD/mes: menos que esto → no califica
+  roadmapUrl: 'https://myconsulting.app/roadmap',                       // botón para los que no califican
+
   // Respuestas de Calendly a "Hoy en día cuanto estas generando mensualmente en USD" que cuentan como calificado.
   // Tienen que estar escritas igual que en Calendly. Los calificados disparan además el evento "AgendaCalificada".
   facturacionCalificada: ['$30K-$100K', '+$100K'],

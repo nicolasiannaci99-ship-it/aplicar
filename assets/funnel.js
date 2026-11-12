@@ -51,6 +51,9 @@
     if (!persona.ph && /^answer_|phone|text_reminder/.test(k) && /^[+\d\s().-]{8,20}$/.test(v) && v.replace(/\D/g, '').length >= 8) persona.ph = v.replace(/\D/g, '');
   });
 
+  // la aplicación de la landing completa estos datos (nombre, email, teléfono) para el servidor
+  window.mcPersona = function (p) { Object.keys(p || {}).forEach(function (k) { if (p[k]) persona[k] = p[k]; }); };
+
   /* ---------- Cookies de Meta (_fbp / _fbc) ---------- */
   var cookie = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
   var fbclid = q.get('fbclid');
